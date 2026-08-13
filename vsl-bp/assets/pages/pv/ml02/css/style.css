@@ -1,0 +1,196 @@
+/* CC / PV1 / ML02 — overrides on top of the shared l2ml01 lead stylesheet.
+   Brief 31_JV (CardioClear): same page as the L2/ML01 lead, but the three offer
+   cards are replaced by a single pulsating CTA, and the headline below the
+   video is dropped once the pitch reveals that CTA. */
+
+/* Headline highlight — "High Blood Pressure" in the news red of the reference. */
+.lead-cbs .headline-block h1 .hl {
+  color: #ef2626;
+}
+
+/* Once the offer is on screen the page has one job. The headline that carried
+   the reader up to this point would only compete with the button. */
+.lead-cbs.is-revealed .headline-block {
+  display: none;
+}
+
+/* ---- Header and LIVE bar ------------------------------------------------- */
+
+/* Give the CBS bar room to breathe before the LIVE strip. */
+.lead-cbs .cbs-header {
+  margin-bottom: 18px;
+}
+
+/* The LIVE count is the first proof element on the page, so it reads as a band
+   rather than a thin line. */
+.lead-cbs .live-viewers {
+  padding: 16px 14px;
+  margin-bottom: 16px;
+}
+
+.lead-cbs .live-viewers__status {
+  font-size: 13px;
+}
+
+.lead-cbs .live-viewers__copy {
+  font-size: 14px;
+}
+
+.lead-cbs .live-viewers__copy strong {
+  font-size: 16px;
+}
+
+/* ---- Single CTA ---------------------------------------------------------- */
+
+.lead-cbs .cta-block {
+  padding: 18px 0 28px;
+  text-align: center;
+}
+
+.lead-cbs .cta-block__stock {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 9px;
+  margin: 0 0 16px;
+  color: #ff6b6b;
+  font-size: clamp(20px, 5.2vw, 26px);
+  font-weight: 700;
+  letter-spacing: 0.01em;
+}
+
+/* inline-block so the drop animation can transform it — a bare inline element
+   would ignore the scale — and a fixed min-width so 2 and 3 digits don't shift
+   the line as it counts down. */
+.lead-cbs .cta-block__stock strong {
+  display: inline-block;
+  min-width: 1.6em;
+  color: #fff;
+  font-size: 1.15em;
+  font-weight: 800;
+  font-variant-numeric: tabular-nums;
+  text-align: center;
+}
+
+.lead-cbs .cta-block__stock strong.is-dropping {
+  animation: stockDrop 0.34s ease-out;
+}
+
+.lead-cbs .cta-block__stock-dot {
+  flex: none;
+  width: 11px;
+  height: 11px;
+  border-radius: 50%;
+  background: #ef2626;
+  box-shadow: 0 0 0 0 rgba(239, 38, 38, 0.7);
+  animation: stockDot 1.6s ease-out infinite;
+}
+
+.lead-cbs .cta-block__button {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  max-width: 620px;
+  min-height: 86px;
+  margin: 0 auto;
+  padding: 16px 20px;
+  overflow: hidden;
+  border-radius: 14px;
+  background: linear-gradient(180deg, #35d46f, #159c48);
+  color: #fff;
+  font-size: clamp(24px, 6.2vw, 34px);
+  font-weight: 900;
+  line-height: 1.12;
+  text-align: center;
+  text-decoration: none;
+  text-wrap: balance;
+  text-shadow: 0 2px 6px rgba(6, 68, 30, 0.35);
+  animation: ctaPulse 1.5s ease-in-out infinite;
+}
+
+/* The sheen is a child so it sweeps across the label without inheriting the
+   pulse transform. */
+.lead-cbs .cta-block__button::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -60%;
+  width: 42%;
+  height: 100%;
+  background: linear-gradient(100deg, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 0.5) 50%, rgba(255, 255, 255, 0) 100%);
+  transform: skewX(-18deg);
+  animation: ctaSheen 3s ease-in-out infinite;
+}
+
+.lead-cbs .cta-block__button:hover,
+.lead-cbs .cta-block__button:focus-visible {
+  background: linear-gradient(180deg, #3ee07a, #17ac4f);
+}
+
+@keyframes ctaPulse {
+  0%,
+  100% {
+    transform: scale(1);
+    box-shadow: 0 10px 22px rgba(21, 156, 72, 0.3);
+  }
+  50% {
+    transform: scale(1.035);
+    box-shadow: 0 18px 38px rgba(53, 212, 111, 0.55);
+  }
+}
+
+@keyframes ctaSheen {
+  0% {
+    left: -60%;
+  }
+  55%,
+  100% {
+    left: 125%;
+  }
+}
+
+@keyframes stockDot {
+  0% {
+    box-shadow: 0 0 0 0 rgba(239, 38, 38, 0.7);
+  }
+  70% {
+    box-shadow: 0 0 0 10px rgba(239, 38, 38, 0);
+  }
+  100% {
+    box-shadow: 0 0 0 0 rgba(239, 38, 38, 0);
+  }
+}
+
+/* A unit sold should register, not celebrate: a short dip and a red tint that
+   fades back to white. */
+@keyframes stockDrop {
+  0% {
+    transform: translateY(-3px);
+    color: #ff5c5c;
+  }
+  55% {
+    transform: translateY(0);
+  }
+  100% {
+    transform: translateY(0);
+    color: #fff;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .lead-cbs .cta-block__button,
+  .lead-cbs .cta-block__stock-dot,
+  .lead-cbs .cta-block__stock strong.is-dropping {
+    animation: none;
+  }
+
+  .lead-cbs .cta-block__button {
+    box-shadow: 0 12px 24px rgba(21, 156, 72, 0.35);
+  }
+
+  .lead-cbs .cta-block__button::after {
+    display: none;
+  }
+}
