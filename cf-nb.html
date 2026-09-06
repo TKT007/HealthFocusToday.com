@@ -1,5 +1,5 @@
 
-<html lang="pt-BR"><head>
+<html lang="en"><head>
 	<meta charset="UTF-8">
 	<script>
 	/* Fundo branco no player VTurb: o video renderiza dentro de shadow DOM (closed),
@@ -413,9 +413,10 @@ vturb-smartplayer#vid-6a97e9e5855277b39b912ec5 .plyr__video-wrapper {
 }
 @media (prefers-reduced-motion: reduce) { .cf-cta-btn { animation: none; } }
 
-/* MOBILE: o botao do layout some; a barra fixa no nivel do body o substitui */
+/* MOBILE: botao igual ao do desktop abaixo do video; barra fixa so quando ele sai da tela */
 @media (max-width: 767px) {
-  .cf-cta-wrap { display: none; }
+  .cf-cta-wrap { display: block; padding: 16px 16px 8px; }
+  .cf-cta-btn { font-size: 19px; padding: 16px 34px; }
   body { padding-bottom: 72px !important; }
 }
 					</style>
@@ -1351,7 +1352,11 @@ var e="script#wp-emoji-settings",t=document.querySelector(e);if(!(t instanceof H
     position: fixed;
     left: 0; right: 0; bottom: 0;
     z-index: 999999;
+    transform: translateY(110%);
+    transition: transform .28s ease;
+    pointer-events: none;
   }
+  .cf-cta-fixedwrap.cf-on { transform: translateY(0); pointer-events: auto; }
   .cf-cta-fixedwrap .cf-cta-btn {
     display: block;
     width: 100%;
@@ -1371,4 +1376,17 @@ var e="script#wp-emoji-settings",t=document.querySelector(e);if(!(t instanceof H
   @media (prefers-reduced-motion: reduce) { .cf-cta-fixedwrap .cf-cta-btn { animation: none; } }
 }
 </style>
+<script>
+/* mostra a barra fixa somente quando o botao abaixo do video sai da tela */
+(function () {
+  var alvo = document.querySelector(".cf-cta-wrap");
+  var barra = document.querySelector(".cf-cta-fixedwrap");
+  if (!alvo || !barra || !("IntersectionObserver" in window)) return;
+  new IntersectionObserver(function (entries) {
+    entries.forEach(function (en) {
+      barra.classList.toggle("cf-on", !en.isIntersecting);
+    });
+  }, { threshold: 0 }).observe(alvo);
+})();
+</script>
 </body></html>
