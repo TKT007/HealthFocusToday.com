@@ -1,5 +1,5 @@
 
-<html lang="en"><head>
+<html lang="pt-BR"><head>
 	<meta charset="UTF-8">
 	<script>
 	/* Fundo branco no player VTurb: o video renderiza dentro de shadow DOM (closed),
@@ -420,7 +420,7 @@ vturb-smartplayer#vid-6a97e9e5855277b39b912ec5 .plyr__video-wrapper {
   body { padding-bottom: 72px !important; }
 }
 					</style>
-					<div class="cf-cta-wrap">
+					<div class="cf-cta-wrap cf-delayed">
 						<a class="cf-cta-btn" href="https://max.mcpqclick.com/click"><svg class="cf-cta-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="9" cy="21" r="1.6"></circle><circle cx="19" cy="21" r="1.6"></circle><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path></svg>GET 3 FREE BOTTLES NOW!</a>
 					</div>
 				</div>
@@ -481,6 +481,7 @@ vturb-smartplayer#vid-6a97e9e5855277b39b912ec5 .plyr__video-wrapper {
 				<div class="elementor-element elementor-element-cfd9c4f elementor-widget-mobile__width-inherit elementor-widget elementor-widget-html" data-id="cfd9c4f" data-element_type="widget" data-e-type="widget" data-widget_type="html.default">
 					<style>
   .esconderr {display: none}
+  .cf-delayed { display: none !important; }
   .cronometro {
     font-size: 50px;
     font-weight: bold;
@@ -496,6 +497,18 @@ document.addEventListener("DOMContentLoaded", function () {
   const COUNTDOWN_START = 30 * 60;
   const alreadyDisplayedKey = "alreadyElsDisplayed";
   const elsHidden = document.querySelectorAll(CLASS_TO_DISPLAY);
+  const btnsHidden = document.querySelectorAll(".cf-cta-wrap, .cf-cta-fixedwrap");
+
+  // persistencia robusta: localStorage com fallback em cookie (file:// pode bloquear storage)
+  function marcarRevelado() {
+    try { localStorage.setItem(alreadyDisplayedKey, "true"); } catch (e) {}
+    try { document.cookie = alreadyDisplayedKey + "=true; path=/; max-age=31536000; SameSite=Lax"; } catch (e) {}
+  }
+  function jaRevelado() {
+    try { if (localStorage.getItem(alreadyDisplayedKey) === "true") return true; } catch (e) {}
+    try { if (new RegExp("(?:^|;\\s*)" + alreadyDisplayedKey + "=true(?:;|$)").test(document.cookie)) return true; } catch (e) {}
+    return false;
+  }
 
   function formatTime(seconds) {
     const m = Math.floor(seconds / 60);
@@ -524,7 +537,8 @@ document.addEventListener("DOMContentLoaded", function () {
       el.classList.remove("esconderr");
       el.style.display = "";
     });
-    localStorage.setItem(alreadyDisplayedKey, "true");
+    btnsHidden.forEach(el => el.classList.remove("cf-delayed"));
+    marcarRevelado();
     ["cronometro1", "cronometro2", "cronometro3", "cronometro4"]
       .forEach(id => startCountdown(id));
   }
@@ -546,7 +560,7 @@ document.addEventListener("DOMContentLoaded", function () {
     }, 1000);
   }
 
-  if (localStorage.getItem(alreadyDisplayedKey) === "true") {
+  if (jaRevelado()) {
     showHiddenElements();
   } else {
     watchVideoProgress();
@@ -1341,7 +1355,7 @@ var e="script#wp-emoji-settings",t=document.querySelector(e);if(!(t instanceof H
 
 
 <!-- barra fixa mobile: filha direta do body para o position:fixed nao ser quebrado pelo transform da animacao AOS -->
-<div class="cf-cta-fixedwrap">
+<div class="cf-cta-fixedwrap cf-delayed">
   <a class="cf-cta-btn" href="https://max.mcpqclick.com/click"><svg class="cf-cta-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="9" cy="21" r="1.6"></circle><circle cx="19" cy="21" r="1.6"></circle><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path></svg>GET 3 FREE BOTTLES NOW!</a>
 </div>
 <style>
@@ -1367,11 +1381,11 @@ var e="script#wp-emoji-settings",t=document.querySelector(e);if(!(t instanceof H
     padding: 17px 16px calc(17px + env(safe-area-inset-bottom, 0px));
     transform-origin: 50% 100%;
     animation: cf-bar-pulse 1.8s ease-in-out infinite;
-    box-shadow: 0 -6px 18px rgba(0,0,0,.22), inset 0 0 0 3px #ffd60a;
+    box-shadow: 0 -6px 18px rgba(0,0,0,.22);
   }
   @keyframes cf-bar-pulse {
-    0%, 100% { transform: scale(1);    box-shadow: 0 -6px 18px rgba(0,0,0,.22),  inset 0 0 0 3px #ffd60a; }
-    50%      { transform: scale(1.012); box-shadow: 0 -8px 26px rgba(20,160,80,.6), inset 0 0 0 3px #ffd60a; }
+    0%, 100% { transform: scale(1);    box-shadow: 0 -6px 18px rgba(0,0,0,.22) ; }
+    50%      { transform: scale(1.012); box-shadow: 0 -8px 26px rgba(20,160,80,.6); }
   }
   @media (prefers-reduced-motion: reduce) { .cf-cta-fixedwrap .cf-cta-btn { animation: none; } }
 }
