@@ -1,6 +1,9 @@
 <html lang="en"><head>
 	<meta charset="UTF-8">
 	<script>
+	/* Fundo branco no player VTurb: o video renderiza dentro de shadow DOM (closed),
+	   entao interceptamos attachShadow ANTES do script do VTurb carregar, abrimos o modo
+	   e injetamos o override de background em cada shadow root criado. */
 	(function () {
 	  var CSS_BRANCO =
 	    "#player{background-color:#ffffff !important}" +
