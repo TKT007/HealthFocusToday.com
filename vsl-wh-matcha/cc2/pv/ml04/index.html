@@ -118,16 +118,7 @@
 		<link rel="dns-prefetch" href="https://images.converteai.net">
 		<link rel="dns-prefetch" href="https://license.vturb.com">
 
-		<!-- TROCAR O VÍDEO — player element: update id='vid-XXXXX' and ACCOUNT_ID/PLAYER_ID in s.src below -->
-		<vturb-smartplayer id="vid-6a85fc97b0cfb8150862ed9d"
-			style="display: block; margin: 0 auto; width: 100%; max-width: 400px;">
-			<div class="vturb-player-placeholder"
-				style="position: relative; width: 100%; padding: 125% 0 0; z-index: 0; background-color: black;"></div>
-		</vturb-smartplayer>
-		<script
-			type="text/javascript"> var s = document.createElement("script"); s.src = "https://scripts.converteai.net/a69a2e49-27d1-4ec3-8f00-39c14d078e68/players/6a85fc97b0cfb8150862ed9d/v4/player.js", s.async = !0, document.head.appendChild(s); </script>
-		<!-- ============================================================ -->
-
+	<vturb-smartplayer id="vid-6aa4f3be5219b9567e509e4d" style="display: block; margin: 0 auto; width: 100%; max-width: 400px;"><div class="vturb-player-placeholder" style="position: relative; width: 100%; padding: 125% 0 0; z-index: 0; background-color: black;"></div></vturb-smartplayer> <script type="text/javascript"> var s=document.createElement("script"); s.src="https://scripts.converteai.net/8d960c08-121c-4cd6-9d1b-71cfe2cf79ee/players/6aa4f3be5219b9567e509e4d/v4/player.js", s.async=!0,document.head.appendChild(s); </script>
 		<!-- 2. EDITE OS LINKS DE CHECKOUT ABAIXO -->
 		<script>
 			const CHECKOUT_LINKS = {
@@ -371,7 +362,6 @@
 							Injections
 						</h1>
 						<div class="video-container" id="vsl-anchor">
-						<vturb-smartplayer id="vid-6aa4f3be5219b9567e509e4d" style="display: block; margin: 0 auto; width: 100%; max-width: 400px;"><div class="vturb-player-placeholder" style="position: relative; width: 100%; padding: 125% 0 0; z-index: 0; background-color: black;"></div></vturb-smartplayer> <script type="text/javascript"> var s=document.createElement("script"); s.src="https://scripts.converteai.net/8d960c08-121c-4cd6-9d1b-71cfe2cf79ee/players/6aa4f3be5219b9567e509e4d/v4/player.js", s.async=!0,document.head.appendChild(s); </script>
 							<img class="img_adv mt-3" src="../../../assets/pages/dtc/pv/ml03/img/logosnovas.png" />
 						</div>
 					</div>
@@ -611,7 +601,7 @@
 		<script>
 			$(document).ready(function () {
 				var delaySeconds = 3469;   // 57:49 do pitch
-				var player = document.querySelector("vturb-smartplayer");
+				var player = document.querySelector("");
 
 				player.addEventListener("player:ready", function () {
 					player.displayHiddenElements(delaySeconds, [".esconder"], { persist: true });
