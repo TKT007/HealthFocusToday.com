@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html style="scroll-behavior: auto;">
 
@@ -100,21 +101,38 @@
     ================================================================
 -->
 	<div id="vsl-editor-section">
+		<!-- 1. COLE O CÓDIGO DO VTURB COMPLETO ABAIXO (PRELOADS + PLAYER + SCRIPT) -->
 
-	<script>!function(i,n){i._plt=i._plt||(n&&n.timeOrigin?n.timeOrigin+n.now():Date.now())}(window,performance);</script>
-<link rel="preload" href="https://scripts.converteai.net/8d960c08-121c-4cd6-9d1b-71cfe2cf79ee/players/6aa4f3be5219b9567e509e4d/v4/player.js" as="script">
-<link rel="preload" href="https://scripts.converteai.net/lib/js/smartplayer-wc/v4/smartplayer.js" as="script">
-<link rel="preload" href="https://cdn.converteai.net/8d960c08-121c-4cd6-9d1b-71cfe2cf79ee/6aa4f1de56126db3cd91d5dc/main.m3u8" as="fetch">
-<link rel="dns-prefetch" href="https://cdn.converteai.net">
-<link rel="dns-prefetch" href="https://scripts.converteai.net">
-<link rel="dns-prefetch" href="https://images.converteai.net">
-<link rel="dns-prefetch" href="https://license.vturb.com">
+		<!-- ============================================================ -->
+		<!-- TROCAR O VÍDEO — preload block: update ACCOUNT_ID, PLAYER_ID and VIDEO_ID below -->
+		<!-- ============================================================ -->
+		<script>!function (i, n) { i._plt = i._plt || (n && n.timeOrigin ? n.timeOrigin + n.now() : Date.now()) }(window, performance);</script>
+		<link rel="preload"
+			href="https://scripts.converteai.net/8d960c08-121c-4cd6-9d1b-71cfe2cf79ee/players/6aa4f3be5219b9567e509e4d/v4/player.js"
+			as="script">
+		<link rel="preload" href="https://scripts.converteai.net/lib/js/smartplayer-wc/v4/smartplayer.js" as="script">
+		<link rel="preload"
+			href="https://cdn.converteai.net/8d960c08-121c-4cd6-9d1b-71cfe2cf79ee/6aa4f1de56126db3cd91d5dc/main.m3u8"
+			as="fetch">
+		<link rel="dns-prefetch" href="https://cdn.converteai.net">
+		<link rel="dns-prefetch" href="https://scripts.converteai.net">
+		<link rel="dns-prefetch" href="https://images.converteai.net">
+		<link rel="dns-prefetch" href="https://license.vturb.com">
 
-	<vturb-smartplayer id="vid-6aa4f3be5219b9567e509e4d" style="display: block; margin: 0 auto; width: 100%; max-width: 400px;"><div class="vturb-player-placeholder" style="position: relative; width: 100%; padding: 125% 0 0; z-index: 0; background-color: black;"></div></vturb-smartplayer> <script type="text/javascript"> var s=document.createElement("script"); s.src="https://scripts.converteai.net/8d960c08-121c-4cd6-9d1b-71cfe2cf79ee/players/6aa4f3be5219b9567e509e4d/v4/player.js", s.async=!0,document.head.appendChild(s); </script>
+		<!-- TROCAR O VÍDEO — player element: update id='vid-XXXXX' and ACCOUNT_ID/PLAYER_ID in s.src below -->
+		<vturb-smartplayer id="vid-6aa4f3be5219b9567e509e4d"
+			style="display: block; margin: 0 auto; width: 100%; max-width: 400px;">
+			<div class="vturb-player-placeholder"
+				style="position: relative; width: 100%; padding: 125% 0 0; z-index: 0; background-color: black;"></div>
+		</vturb-smartplayer>
+		<script
+			type="text/javascript"> var s = document.createElement("script"); s.src = "https://scripts.converteai.net/8d960c08-121c-4cd6-9d1b-71cfe2cf79ee/players/6aa4f3be5219b9567e509e4d/v4/player.js", s.async = !0, document.head.appendChild(s); </script>
+		<!-- ============================================================ -->
+
 		<!-- 2. EDITE OS LINKS DE CHECKOUT ABAIXO -->
 		<script>
 			const CHECKOUT_LINKS = {
-				bottles3: "https://go.healthfocustoday.org/click",
+				bottles3: "https://getleaftide.com/powder/cc2/pay/checkout.php?package=3bottles&hid=b2lkPW9mZl8wODYwMDAyJmFpZD1hZmY3ODI4NDI2JnVpZD1ibF8xNTA1MTgy&affid=aff7828426",
 			};
 
 			// Captura TODOS os parâmetros da URL atual da página
@@ -375,7 +393,7 @@
 					     O CTA aponta diretamente para o checkout de 3 frascos, propagando os
 					     parâmetros definidos na URL. -->
 				<section class="dtc-cta" aria-label="Claim your spot">
-					<a class="dtc-cta__button buylink" href="https://go.healthfocustoday.org/click" title="3 Bottles"
+					<a class="dtc-cta__button buylink" href="https://getleaftide.com/powder/cc2/pay/checkout.php?package=3bottles&hid=b2lkPW9mZl8wODYwMDAyJmFpZD1hZmY3ODI4NDI2JnVpZD1ibF8xNTA1MTgy&affid=aff7828426" title="3 Bottles"
 						referrerpolicy="no-referrer" rel="noopener noreferrer">
 						<span>CLAIM MY 3 FREE JARS NOW</span>
 					</a>
@@ -593,7 +611,7 @@
 		<script>
 			$(document).ready(function () {
 				var delaySeconds = 3;   // 57:49 do pitch
-				var player = document.querySelector("");
+				var player = document.querySelector("vturb-smartplayer");
 
 				player.addEventListener("player:ready", function () {
 					player.displayHiddenElements(delaySeconds, [".esconder"], { persist: true });
