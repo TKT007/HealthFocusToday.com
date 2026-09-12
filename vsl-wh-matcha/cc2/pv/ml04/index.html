@@ -106,14 +106,10 @@
 		<!-- ============================================================ -->
 		<!-- TROCAR O VÍDEO — preload block: update ACCOUNT_ID, PLAYER_ID and VIDEO_ID below -->
 		<!-- ============================================================ -->
-		<script>!function (i, n) { i._plt = i._plt || (n && n.timeOrigin ? n.timeOrigin + n.now() : Date.now()) }(window, performance);</script>
-		<link rel="preload"
-			href="https://scripts.converteai.net/8d960c08-121c-4cd6-9d1b-71cfe2cf79ee/players/6aa4f3be5219b9567e509e4d/v4/player.js"
-			as="script">
-		<link rel="preload" href="https://scripts.converteai.net/lib/js/smartplayer-wc/v4/smartplayer.js" as="script">
-		<link rel="preload"
-			href="https://cdn.converteai.net/8d960c08-121c-4cd6-9d1b-71cfe2cf79ee/6aa4f1de56126db3cd91d5dc/main.m3u8"
-			as="fetch">
+		<script>!function(i,n){i._plt=i._plt||(n&&n.timeOrigin?n.timeOrigin+n.now():Date.now())}(window,performance);</script>
+<link rel="preload" href="https://scripts.converteai.net/8d960c08-121c-4cd6-9d1b-71cfe2cf79ee/players/6aa4f3be5219b9567e509e4d/v4/player.js" as="script">
+<link rel="preload" href="https://scripts.converteai.net/lib/js/smartplayer-wc/v4/smartplayer.js" as="script">
+<link rel="preload" href="https://cdn.converteai.net/8d960c08-121c-4cd6-9d1b-71cfe2cf79ee/6aa4f1de56126db3cd91d5dc/main.m3u8" as="fetch">
 		<link rel="dns-prefetch" href="https://cdn.converteai.net">
 		<link rel="dns-prefetch" href="https://scripts.converteai.net">
 		<link rel="dns-prefetch" href="https://images.converteai.net">
@@ -132,47 +128,8 @@
 		<!-- 2. EDITE OS LINKS DE CHECKOUT ABAIXO -->
 		<script>
 			const CHECKOUT_LINKS = {
-				bottles3: "https://getleaftide.com/powder/cc2/pay/checkout.php?package=3bottles&hid=b2lkPW9mZl8wODYwMDAyJmFpZD1hZmY3ODI4NDI2JnVpZD1ibF8xNTA1MTgy&affid=aff7828426",
+				bottles3: "https://go.healthfocustoday.org/click",
 			};
-
-			// Captura TODOS os parâmetros da URL atual da página
-			function getUrlParams() {
-				var params = {};
-				var search = window.location.search.substring(1);
-				if (!search) return params;
-
-				var pairs = search.split('&');
-				for (var i = 0; i < pairs.length; i++) {
-					if (!pairs[i]) continue;
-					var idx = pairs[i].indexOf('=');
-					var key = idx === -1 ? pairs[i] : pairs[i].substring(0, idx);
-					var value = idx === -1 ? '' : pairs[i].substring(idx + 1);
-
-					try { key = decodeURIComponent(key); } catch (e) { }
-					try { value = decodeURIComponent(value); } catch (e) { }
-
-					if (key) params[key] = value;
-				}
-				return params;
-			}
-
-			// Anexa params extras na URL preservando o que já existe
-			function appendParams(baseUrl, extraParams) {
-				if (!baseUrl) return baseUrl;
-
-				var keys = [];
-				for (var k in extraParams) {
-					if (extraParams.hasOwnProperty(k)) keys.push(k);
-				}
-				if (keys.length === 0) return baseUrl;
-
-				var separator = baseUrl.indexOf('?') !== -1 ? '&' : '?';
-				var queryString = keys.map(function (key) {
-					return encodeURIComponent(key) + '=' + encodeURIComponent(extraParams[key]);
-				}).join('&');
-
-				return baseUrl + separator + queryString;
-			}
 
 			function applyCheckoutSettings() {
 				// Move o Player para o Hero (PREPEND = insere ANTES da img das logos, deixando logos ABAIXO do vídeo)
@@ -187,23 +144,13 @@
 					return 'https://' + url;
 				};
 
-				// Captura os params da URL UMA VEZ por execução
-				const urlParams = getUrlParams();
-
-				// Aplica os links de checkout COM os params propagados
+				// Aplica o link de checkout fixo, sem propagação de params da URL
 				document.querySelectorAll('a.buylink').forEach(link => {
-					// Pula links já processados pra não duplicar params
 					if (link.getAttribute('data-fixed') === 'true') return;
 
 					const href = link.getAttribute('href') || "";
-					let newHref = "";
-					if (href === '6bottles' || href === '6B') newHref = fixUrl(CHECKOUT_LINKS.bottles6);
-					else if (href === '3bottles' || href === '3B') newHref = fixUrl(CHECKOUT_LINKS.bottles3);
-					else if (href === '2bottles' || href === '2B') newHref = fixUrl(CHECKOUT_LINKS.bottles2);
-
-					if (newHref) {
-						// Anexa os params da URL antes de setar o href
-						link.href = appendParams(newHref, urlParams);
+					if (href === '3bottles' || href === '3B') {
+						link.href = fixUrl(CHECKOUT_LINKS.bottles3);
 						link.setAttribute('data-fixed', 'true');
 					}
 				});
@@ -393,7 +340,7 @@
 					     O CTA aponta diretamente para o checkout de 3 frascos, propagando os
 					     parâmetros definidos na URL. -->
 				<section class="dtc-cta" aria-label="Claim your spot">
-					<a class="dtc-cta__button buylink" href="https://getleaftide.com/powder/cc2/pay/checkout.php?package=3bottles&hid=b2lkPW9mZl8wODYwMDAyJmFpZD1hZmY3ODI4NDI2JnVpZD1ibF8xNTA1MTgy&affid=aff7828426" title="3 Bottles"
+					<a class="dtc-cta__button buylink" href="https://go.healthfocustoday.org/click" title="3 Bottles"
 						referrerpolicy="no-referrer" rel="noopener noreferrer">
 						<span>CLAIM MY 3 FREE JARS NOW</span>
 					</a>
