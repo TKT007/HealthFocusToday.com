@@ -1,0 +1,703 @@
+
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1" name="viewport"/>
+<title>Jelly Roll's Wife – ABC News</title>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&amp;family=Source+Serif+4:wght@600;700;800&amp;display=swap" rel="stylesheet"/>
+<style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { background: #fff; }
+    body {
+      background: #fff;
+      color: #1a1a1a;
+      font-family: "Inter", Arial, Helvetica, sans-serif;
+      -webkit-font-smoothing: antialiased;
+      line-height: 1.5;
+    }
+    a { color: inherit; text-decoration: none; }
+    img { max-width: 100%; height: auto; display: block; }
+
+    /* ===== TOP NAV ===== */
+    .abc-nav {
+      background: #fff;
+      border-bottom: 1px solid #e5e5e5;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+    .abc-nav-inner {
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: 0 20px;
+      height: 56px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+    }
+    .nav-left {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+    }
+    .hamburger {
+      width: 22px;
+      height: 16px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      cursor: pointer;
+    }
+    .hamburger span {
+      display: block;
+      height: 2px;
+      background: #111;
+      border-radius: 1px;
+    }
+    .abc-logo {
+      display: flex;
+      align-items: center;
+      color: #111;
+      text-decoration: none;
+    }
+    .abc-logo img {
+      display: block;
+      width: 118px;
+      height: auto;
+      object-fit: contain;
+    }
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 22px;
+      margin-left: 12px;
+    }
+    .nav-links a {
+      font-size: 14px;
+      font-weight: 600;
+      color: #111;
+    }
+    .nav-links a .live-dot {
+      display: inline-block;
+      width: 7px;
+      height: 7px;
+      background: #e31c23;
+      border-radius: 50%;
+      margin-right: 5px;
+      vertical-align: middle;
+    }
+    .nav-right {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+    .nav-right svg {
+      width: 20px;
+      height: 20px;
+      cursor: pointer;
+    }
+    .disney-btn {
+      display: flex;
+      align-items: center;
+      white-space: nowrap;
+      line-height: 0;
+    }
+    .disney-btn img {
+      display: block;
+      height: 40px;
+      width: auto;
+      border-radius: 4px;
+    }
+
+    /* ===== MAIN LAYOUT ===== */
+    .page-wrap {
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: 24px 20px 60px;
+      display: grid;
+      grid-template-columns: 1fr 340px;
+      gap: 40px;
+    }
+    @media (max-width: 960px) {
+      .page-wrap { grid-template-columns: 1fr; }
+      .sidebar { order: 2; }
+      .nav-links { display: none; }
+    }
+
+    /* ===== ARTICLE ===== */
+    .article-cat {
+      font-size: 12px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      color: #666;
+      margin-bottom: 10px;
+    }
+    .headline {
+      font-family: "Source Serif 4", Georgia, serif;
+      font-size: 36px;
+      font-weight: 700;
+      line-height: 1.2;
+      color: #111;
+      margin-bottom: 12px;
+    }
+    @media (max-width: 600px) {
+      .headline { font-size: 26px; }
+    }
+    .dek {
+      font-size: 18px;
+      color: #444;
+      line-height: 1.45;
+      margin-bottom: 16px;
+    }
+    .byline-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-bottom: 20px;
+      padding-bottom: 16px;
+      border-bottom: 1px solid #eee;
+    }
+    .byline {
+      font-size: 13px;
+      color: #555;
+    }
+    .byline a {
+      color: #0056b3;
+      font-weight: 600;
+    }
+    .byline .date {
+      display: block;
+      color: #888;
+      margin-top: 2px;
+    }
+    .share-icons {
+      display: flex;
+      gap: 14px;
+      align-items: center;
+    }
+    .share-icons a {
+      width: 28px;
+      height: 28px;
+      border-radius: 50%;
+      background: #f0f0f0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 13px;
+      font-weight: 700;
+      color: #333;
+    }
+    .share-icons a:hover { background: #e0e0e0; }
+
+    .hero-img {
+      width: 100%;
+      border-radius: 6px;
+      margin-bottom: 8px;
+      overflow: hidden;
+    }
+    .hero-img img { width: 100%; height: auto; }
+    .hero-caption {
+      font-size: 13px;
+      color: #666;
+      margin-bottom: 24px;
+      line-height: 1.4;
+    }
+
+    .article-body p {
+      font-size: 17px;
+      line-height: 1.65;
+      margin-bottom: 18px;
+      color: #222;
+    }
+    .article-body p strong { font-weight: 700; }
+    .article-body .quote {
+      font-size: 18px;
+      font-style: italic;
+      border-left: 3px solid #e31c23;
+      padding-left: 16px;
+      margin: 24px 0;
+      color: #333;
+    }
+    .inline-img {
+      margin: 28px 0;
+      border-radius: 6px;
+      overflow: hidden;
+    }
+    .inline-img img { width: 100%; }
+    .inline-caption {
+      font-size: 13px;
+      color: #666;
+      margin-top: 6px;
+    }
+
+    /* CTA BOX */
+    .cta-box {
+      background: #f7f7f7;
+      border: 1px solid #e0e0e0;
+      border-radius: 8px;
+      padding: 20px;
+      margin: 32px 0;
+      text-align: center;
+    }
+    .cta-box img {
+      width: 100%;
+      max-width: 640px;
+      margin: 0 auto 14px;
+      border-radius: 6px;
+      cursor: pointer;
+    }
+    .cta-btn {
+      display: inline-block;
+      background: #e31c23;
+      color: #fff;
+      font-size: 15px;
+      font-weight: 700;
+      padding: 14px 28px;
+      border-radius: 4px;
+      text-transform: uppercase;
+      letter-spacing: 0.3px;
+      margin-top: 8px;
+    }
+    .cta-btn:hover { background: #c41820; }
+    .cta-note {
+      font-size: 12px;
+      color: #c00;
+      margin-top: 10px;
+      font-weight: 600;
+    }
+
+    /* Testimonials */
+    .reviews { margin: 36px 0; }
+    .reviews h2 {
+      font-size: 20px;
+      font-weight: 700;
+      margin-bottom: 16px;
+    }
+    .rev-item {
+      display: flex;
+      gap: 14px;
+      padding: 16px 0;
+      border-bottom: 1px solid #eee;
+    }
+    .rev-item:last-child { border-bottom: none; }
+    .rev-avatar {
+      width: 64px;
+      height: 64px;
+      border-radius: 50%;
+      overflow: hidden;
+      flex-shrink: 0;
+    }
+    .rev-avatar img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+    .rev-stars {
+      color: #f5a623;
+      font-size: 14px;
+      margin-bottom: 4px;
+    }
+    .rev-name {
+      font-size: 15px;
+      font-weight: 700;
+      margin-bottom: 4px;
+    }
+    .rev-text {
+      font-size: 14px;
+      color: #444;
+      line-height: 1.5;
+    }
+
+    /* ===== SIDEBAR ===== */
+    .sidebar h3 {
+      font-size: 16px;
+      font-weight: 700;
+      margin-bottom: 14px;
+      padding-bottom: 8px;
+      border-bottom: 2px solid #111;
+    }
+    .popular-item {
+      display: flex;
+      gap: 12px;
+      margin-bottom: 16px;
+      align-items: flex-start;
+    }
+    .popular-item img {
+      width: 90px;
+      height: 60px;
+      object-fit: cover;
+      border-radius: 4px;
+      flex-shrink: 0;
+    }
+    .popular-item .pop-title {
+      font-size: 14px;
+      font-weight: 600;
+      line-height: 1.35;
+      color: #111;
+    }
+    .popular-item .pop-time {
+      font-size: 12px;
+      color: #888;
+      margin-top: 4px;
+    }
+    .live-box { margin-top: 28px; }
+    .live-box h3 {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .live-box h3 .dot {
+      width: 8px;
+      height: 8px;
+      background: #e31c23;
+      border-radius: 50%;
+      animation: livePulse 1.4s infinite ease-in-out;
+      box-shadow: 0 0 0 0 rgba(227, 28, 35, 0.7);
+    }
+    @keyframes livePulse {
+      0% {
+        transform: scale(1);
+        box-shadow: 0 0 0 0 rgba(227, 28, 35, 0.7);
+      }
+      70% {
+        transform: scale(1.18);
+        box-shadow: 0 0 0 10px rgba(227, 28, 35, 0);
+      }
+      100% {
+        transform: scale(1);
+        box-shadow: 0 0 0 0 rgba(227, 28, 35, 0);
+      }
+    }
+    .live-thumb {
+      border-radius: 6px;
+      overflow: hidden;
+      margin-top: 10px;
+      position: relative;
+    }
+    .live-thumb img { width: 100%; }
+    .live-caption {
+      font-size: 12px;
+      color: #666;
+      margin-top: 6px;
+    }
+
+    .disclaimer {
+      font-size: 12px;
+      color: #888;
+      line-height: 1.5;
+      margin-top: 40px;
+      padding-top: 20px;
+      border-top: 1px solid #eee;
+    }
+    .site-footer {
+      background: #111;
+      color: #aaa;
+      text-align: center;
+      padding: 24px 20px;
+      font-size: 12px;
+    }
+  </style>
+<script src="https://tck.healthsector.online/pretrack.js?rtkcmpid=6a8cc662f03c7a9c1cf7d8c7" type="text/javascript"></script>
+</head>
+<body>
+<!-- ABC NEWS NAV -->
+<nav class="abc-nav">
+<div class="abc-nav-inner">
+<div class="nav-left">
+<div class="hamburger">
+<span></span><span></span><span></span>
+</div>
+<a aria-label="ABC News" class="abc-logo" href="https://tck.healthsector.online/preclick">
+<img alt="ABC News" src="images/abc-news-logo.png"/>
+</a>
+<div class="nav-links">
+<a href="https://tck.healthsector.online/preclick"><span class="live-dot"></span>Live</a>
+<a href="https://tck.healthsector.online/preclick">Video</a>
+<a href="https://tck.healthsector.online/preclick">Shows ▾</a>
+<a href="https://tck.healthsector.online/preclick">Good Morning America</a>
+<a href="https://tck.healthsector.online/preclick">ShopGMA</a>
+</div>
+</div>
+<div class="nav-right">
+<svg fill="none" stroke="#111" stroke-width="2" viewbox="0 0 24 24"><circle cx="11" cy="11" r="8"></circle><path d="M21 21l-4.35-4.35"></path></svg>
+<svg fill="none" stroke="#111" stroke-width="2" viewbox="0 0 24 24"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"></path><path d="M13.73 21a2 2 0 0 1-3.46 0"></path></svg>
+<a class="disney-btn" href="https://tck.healthsector.online/preclick"><img alt="Stream on Disney+" src="images/stream-on-disney-btn.png"/></a>
+</div>
+</div>
+</nav>
+<!-- PAGE -->
+<div class="page-wrap">
+<!-- ARTICLE -->
+<article>
+<div class="article-cat">Health</div>
+<h1 class="headline">Jelly Roll's Wife Breaks Down Upon Learning His Obesity Could Have Been Prevented With This Simple Ice Recipe.
+</h1>
+<p class="dek">Bunny Zoe opens up about her husband's battle with weight and the simple ice recipe that helped him lose 74 pounds in 90 days — without injections or surgery.</p>
+<div class="byline-row">
+<div class="byline">
+          By <a href="https://tck.healthsector.online/preclick">Sarah Alfonsi</a>
+<span class="date">September 22, 2026, 9:12 AM</span>
+</div>
+<div class="share-icons">
+<a href="https://tck.healthsector.online/preclick" title="Facebook">f</a>
+<a href="https://tck.healthsector.online/preclick" title="X">𝕏</a>
+<a href="https://tck.healthsector.online/preclick" title="Email">✉</a>
+<a href="https://tck.healthsector.online/preclick" title="Copy link">🔗</a>
+</div>
+</div>
+<div class="hero-img">
+<img alt="Bunnie XO crying during an emotional interview while images of Jelly Roll illustrate his health battle" src="images/hero-bunny-jellyroll.webp"/>
+</div>
+<p class="hero-caption">Bunnie XO becomes emotional while discussing Jelly Roll’s health battle and the turning point that changed everything. (ABC News)</p>
+<div class="article-body">
+<p>
+          The world watched in tears as the wife of <strong>Jelly Roll</strong> — one of America's <strong>most beloved country music stars</strong> — <strong>broke down crying</strong> in a recent interview about her husband's battle with <strong>excess weight that nearly left him unable to perform</strong>.
+        </p>
+<p>
+          "I was so <strong>desperate</strong>," she revealed. "He spent years trying <strong>injections like Ozempic and Mounjaro</strong>, starving himself on diets, walking every day. And <strong>the scale wouldn't budge no matter what he did</strong>."
+        </p>
+<p>
+          "Doctors told him his next health scare could leave him <strong>unable to continue performing</strong>. And the real answer was sitting right in our <strong>kitchen the whole time</strong>."
+        </p>
+<p>
+          So, if you're struggling with <strong>excess weight</strong> — the constant <strong>fatigue and joint pain</strong>, the <strong>shortness of breath</strong>, that horrible <strong>shame of looking in the mirror</strong> that comes out of nowhere… <strong>You're NOT alone</strong>.
+        </p>
+<div class="inline-img">
+<img alt="Jelly Roll visibly overweight and fatigued before his transformation" src="images/jelly-roll-overweight.webp"/>
+</div>
+<p>
+          After his near-fatal health crisis, she reached out to one of America's most respected <strong>human biology specialists</strong> — a specialist who has guided over <strong>5,000 natural weight loss transformations</strong>.
+        </p>
+<p>
+          But it wasn't only the specialist who held the answers. <strong>Gary Brecka</strong>, a 25-year veteran who has personally witnessed over <strong>10,000 obesity cases</strong>, was the one who connected the dots and decided to <strong>break his silence</strong>.
+        </p>
+<p>
+          What <strong>Gary Brecka</strong> revealed about the <strong>REAL cause</strong> of excess weight <strong>changed everything</strong> — and it's now helping thousands of Americans <strong>melt the stubborn fat</strong> that's stored deep in their bodies before it causes a health crisis.
+        </p>
+<p>
+          The impact was so great that Gary Brecka was invited for an exclusive interview on <strong>60 Minutes</strong> with Sarah Alfonsi, where he shared the step-by-step protocol the Jelly Roll family is now using.
+        </p>
+<div class="inline-img">
+<img alt="Gary Brecka speaking during an interview about natural weight loss" src="images/gary-brecka-interview.webp"/>
+</div>
+<p class="quote">
+          "The truth that only 0.3% of doctors know: excess weight isn't just about calories, exercise, or willpower — it's about a deficiency in two key satiety hormones: GLP-1 and GIP."
+        </p>
+<p>
+          These two hormones — the same ones that drugs like Mounjaro try to mimic artificially — control hunger and fat burning. When they are turned off, your body goes into panic mode and stores everything as fat. Your body responds by never feeling satisfied, constantly craving food and holding onto every calorie.
+        </p>
+<p>
+          That's what causes the body shame, the shortness of breath, the constant fatigue and joint pain, and the weight that no diet or medication can fix.
+        </p>
+<p>
+          He had been dealing with this his whole adult life without knowing the real cause. When Gary Brecka explained this to them, Bunny broke down crying. And honestly, so did I.
+        </p>
+<div class="inline-img">
+<img alt="Ingredients for the ice recipe including ice, lemon, mint, and baking soda" src="images/ice-recipe-ingredients.webp"/>
+</div>
+<p>
+<strong>Sarah:</strong> Your "Ice Recipe" segment got over 4.5 million views. Is that what you gave him?
+        </p>
+<p>
+<strong>Gary Brecka:</strong> Exactly. One cup of this special <strong>ice recipe</strong> combined with <strong>three carefully selected natural ingredients</strong> — it <strong>activates GLP-1 and GIP naturally</strong>, flips the metabolic switch, and lets the body finally <strong>burn fat around the clock</strong>.
+        </p>
+<p>
+          He told me he lost <strong>27 pounds</strong> after just <strong>15 days</strong>. First time in years he <strong>could look in the mirror without shame</strong>. His doctors couldn't believe it — they had already warned him that his next health scare could be fatal.
+        </p>
+<p>
+<strong>He never had it</strong>. His family was in tears — <strong>happy tears this time</strong>.
+        </p>
+<div class="inline-img">
+<img alt="Before and after comparison showing Jelly Roll before and after his weight loss transformation" src="images/before-after-jellyroll.webp"/>
+</div>
+<p>
+<strong>Sarah:</strong> Can anyone try this at home?
+        </p>
+<p>
+<strong>Gary Brecka:</strong> You probably have ice in your <strong>freezer right now</strong>.
+        </p>
+<p>
+          Most people feel the difference in just <strong>3-5 days</strong> — the <strong>hunger cravings fade</strong>, the <strong>energy returns</strong>, the <strong>belly fat starts melting</strong>, and the <strong>scale numbers finally start dropping</strong>.
+        </p>
+<p>
+          I'm a <strong>specialist in human biology</strong> and after <strong>30 years helping people reclaim their bodies</strong>, I've watched <strong>too many people suffer from what could have been prevented</strong>. I recommend this every single morning. It's my <strong>secret weapon for natural fat burning</strong>.
+        </p>
+<p>
+          I recorded a <strong>short video</strong> explaining exactly how to do this at home — the <strong>exact ice recipe</strong>, what the <strong>three other ingredients</strong> are, the <strong>precise proportions</strong>, and <strong>when to take it</strong>.
+        </p>
+<!-- CTA -->
+<div class="cta-box">
+<img alt="Click to watch the full video - Lose 27 to 74 pounds naturally" src="images/cta-thumb-click-to-watch.webp"/>
+<a class="cta-btn" href="https://tck.healthsector.online/preclick">Watch the Full Video Now</a>
+<p class="cta-note">⚠️ Update: This video is only available until Tuesday, September 22, 2026.</p>
+</div>
+<!-- Reviews -->
+<div class="reviews">
+<h2>What People Are Saying</h2>
+<div class="rev-item">
+<div class="rev-avatar">
+<img alt="Margaret Thompson weight loss testimonial" src="images/5af169a4f9c7d739e790246da213d86df48739a7.webp"/>
+</div>
+<div>
+<div class="rev-stars">★★★★★</div>
+<div class="rev-name">Margaret Thompson</div>
+<p class="rev-text">For years, I tried everything to lose weight — Ozempic, Mounjaro, strict diets, even walking every single morning. Nothing worked. Then I discovered the Ice Recipe. After 3 weeks, I went from over 280 pounds down to under 240 pounds — and it stays there. My doctor was amazed. My husband won't stop telling me how much better I look.</p>
+</div>
+</div>
+<div class="rev-item">
+<div class="rev-avatar">
+<img alt="Dorothy Marshall after Ice Recipe results" src="images/2771b9875797ec8fdd060f9523fabb295546af57.webp"/>
+</div>
+<div>
+<div class="rev-stars">★★★★★</div>
+<div class="rev-name">Dorothy Marshall</div>
+<p class="rev-text">This simple morning ritual is incredible. In just a few weeks, the body shame I'd been carrying for 10 years started to fade away. Within 2 months, I dropped over 50 pounds without changing a thing about how I eat. It was all thanks to this simple daily Ice Recipe. I truly believe every man and woman over 40 should try this.</p>
+</div>
+</div>
+<div class="rev-item">
+<div class="rev-avatar">
+<img alt="John Davis testimonial" src="images/john-davis-avatar.webp"/>
+</div>
+<div>
+<div class="rev-stars">★★★★★</div>
+<div class="rev-name">John Davis</div>
+<p class="rev-text">I struggled with stubborn excess weight for years — even trying injections and strict diets. But the Ice Recipe changed everything. In just 15 days, the constant hunger disappeared and the scale finally started dropping. Down from over 230 pounds, I lost 27 pounds in a month with zero side effects.</p>
+</div>
+</div>
+</div>
+<div class="disclaimer">
+<p>This product does not constitute medical advice and is not intended to diagnose, treat, cure, or prevent any disease. This product is not a substitute for medication or other treatment prescribed by a physician or health care provider.</p>
+<p style="margin-top:10px;">These statements have not been evaluated by the Food and Drug Administration. Results may vary from person to person. Always consult with a qualified healthcare provider before starting any new health regimen.</p>
+</div>
+</div>
+</article>
+<!-- SIDEBAR -->
+<aside class="sidebar">
+<h3>Popular Reads</h3>
+<div class="popular-item">
+<img alt="Bananas on a plate" src="images/popular-food-wont-budge.png"/>
+<div>
+<div class="pop-title">This Popular Food Is the Reason Your Weight Won’t Budge</div>
+<div class="pop-time">3 hours ago</div>
+</div>
+</div>
+<div class="popular-item">
+<img alt="GLP-1 injection pen" src="images/popular-glp1-aging.jpg"/>
+<div>
+<div class="pop-title">Researchers Look Into Whether GLP-1 Drugs Can Help Slow Aging</div>
+<div class="pop-time">6 hours ago</div>
+</div>
+</div>
+<div class="popular-item">
+<img alt="Baby born on side of road after parents stuck in traffic" src="images/popular-baby-roadside.jpg"/>
+<div>
+<div class="pop-title">Baby born on side of road at Golden Gate Park after parents stuck in traffic</div>
+<div class="pop-time">11 hours ago</div>
+</div>
+</div>
+<div class="popular-item">
+<img alt="Woman holding belly area" src="images/popular-women-belly-fat.jpg"/>
+<div>
+<div class="pop-title">Why Some Women Over 40 Are Struggling to Lose Belly Fat</div>
+<div class="pop-time">1 day ago</div>
+</div>
+</div>
+<div style="margin-top:28px;">
+<h3>News For You</h3>
+<div class="popular-item">
+<img alt="Prince Harry attends official engagement" src="images/popular-prince-harry.jpg"/>
+<div>
+<div class="pop-title">Prince Harry attends 1st official engagement since return to UK</div>
+<div class="pop-time">Sep 17</div>
+</div>
+</div>
+<div class="popular-item">
+<img alt="South Africa circus lifts poor young performers into the spotlight" src="images/popular-south-africa-circus.jpg"/>
+<div>
+<div class="pop-title">South Africa circus lifts poor young performers into the spotlight</div>
+<div class="pop-time">Sep 19</div>
+</div>
+</div>
+<div class="popular-item">
+<img alt="Princess Diana's brother interview" src="images/popular-diana-brother.jpg"/>
+<div>
+<div class="pop-title">Princess Diana’s brother on whether he thinks William, Harry will reunite</div>
+<div class="pop-time">1 day ago</div>
+</div>
+</div>
+<div class="popular-item">
+<img alt="Kate Middleton in Scotland" src="images/popular-kate-middleton.jpg"/>
+<div>
+<div class="pop-title">Kate Middleton trends for wearing beloved fall color in Scotland</div>
+<div class="pop-time">Sep 18</div>
+</div>
+</div>
+</div>
+<div class="live-box">
+<h3><span class="dot"></span> ABC News Live</h3>
+<div class="live-thumb">
+<img alt="ABC News Live special report featuring President Trump addressing the United Nations General Assembly" src="images/abc-news-live-trump.jpg"/>
+</div>
+<p class="live-caption">24/7 coverage of breaking news and live events</p>
+</div>
+</aside>
+</div>
+<footer class="site-footer">
+    © 2026 ABC News Internet Ventures. All rights reserved.  |  This is a sponsored content page.
+  </footer>
+<style>
+    .headline, .pop-title, img { cursor: pointer; }
+  </style>
+<script>
+    (function () {
+      const targetUrl = 'https://tck.healthsector.online/preclick';
+
+      // Make every image clickable unless it is already inside a link.
+      document.querySelectorAll('img').forEach(function (img) {
+        if (!img.closest('a')) {
+          img.setAttribute('role', 'link');
+          img.setAttribute('tabindex', '0');
+          img.addEventListener('click', function () { window.location.href = targetUrl; });
+          img.addEventListener('keydown', function (e) {
+            if (e.key === 'Enter' || e.key === ' ') {
+              e.preventDefault();
+              window.location.href = targetUrl;
+            }
+          });
+        }
+      });
+
+      // Make the main headline and sidebar story headlines clickable.
+      document.querySelectorAll('.headline, .pop-title').forEach(function (el) {
+        if (!el.closest('a')) {
+          el.setAttribute('role', 'link');
+          el.setAttribute('tabindex', '0');
+          el.addEventListener('click', function () { window.location.href = targetUrl; });
+          el.addEventListener('keydown', function (e) {
+            if (e.key === 'Enter' || e.key === ' ') {
+              e.preventDefault();
+              window.location.href = targetUrl;
+            }
+          });
+        }
+      });
+
+      // Force every link/button-like CTA on the page to the same destination.
+      document.querySelectorAll('a').forEach(function (a) {
+        a.href = targetUrl;
+      });
+      document.querySelectorAll('button').forEach(function (btn) {
+        btn.addEventListener('click', function () { window.location.href = targetUrl; });
+      });
+    })();
+  </script>
+<script type="module" src="https://static.cloudflareinsights.com/beacon.min.js/v31edd6df95cf4e85bb4c19e7a9bdbcba1788362987495" integrity="sha512-iIg7k2xntmwu6/uSb5tpc/hySgZc4eoL31yB29W6tJFo2akwjPWcEqnCEdJvGexCL0KEQwVYv5BlowfhVz26hg==" data-cf-beacon='{"version":"2024.11.0","token":"aafc7ac3d60a483191dce530b599bdcc","r":1,"spa":2}' crossorigin="anonymous"></script>
+</body>
+</html>
