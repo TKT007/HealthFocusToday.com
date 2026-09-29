@@ -1,0 +1,590 @@
+/* Soda Slim — DTC / PV / ML01: quiz de qualificação que entra no pitch time.
+   Transplantado do advertorial slimsoda-adv1-original-recipe, onde vivia como
+   modal (.ssq-overlay position:fixed + botão de fechar + Esc). Aqui ele é
+   conteúdo da página: o overlay virou .ssq-inline, um bloco no fluxo, e o
+   fechar saiu junto — não há para onde fechar.
+   Tokens, tipografia, espaçamentos e perguntas são os do original: Poppins no
+   corpo, Bitter nos títulos, navy #0A1C4E, dourado #E19626, CTA verde #479C1A.
+   Tudo é escopado em .ssq-*, então page/vsl/custom/bootstrap seguem intocados.
+   O botão base do original era .cta — nome já ocupado por custom.css nesta
+   página, então as regras foram reescopadas em .ssq-continue/.ssq-cta. */
+
+.ssq-inline {
+  padding: 6px 12px 20px;
+}
+
+/* A sombra do original era contra um overlay escuro (0 24px 70px /.4). Sobre o
+   branco desta página isso vira uma mancha, então a borda segura o cartão e a
+   sombra recua. */
+.ssq-card {
+  position: relative;
+  max-width: 560px;
+  margin: 0 auto;
+  background: #fff;
+  border: 1px solid #e4eaf3;
+  border-radius: 18px;
+  box-shadow: 0 12px 44px rgba(10, 28, 78, 0.13);
+  padding: 34px 26px 30px;
+  font-family: 'Poppins', Arial, Helvetica, sans-serif;
+  color: #1d254b;
+  text-align: left;
+}
+
+.ssq-progress {
+  height: 8px;
+  background: #eef2f8;
+  border-radius: 99px;
+  overflow: hidden;
+  margin: 0 0 22px;
+}
+
+.ssq-progress i {
+  display: block;
+  height: 100%;
+  width: 0;
+  background: linear-gradient(90deg, #1d254b, #0a1c4e);
+  border-radius: 99px;
+  transition: width 0.35s ease;
+}
+
+.ssq-kicker {
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: #e19626;
+  margin: 0 0 8px;
+}
+
+.ssq-q {
+  font-family: 'Bitter', Georgia, serif;
+  font-size: 23px;
+  font-weight: 800;
+  line-height: 1.25;
+  color: #0a1c4e;
+  margin: 0 0 6px;
+}
+
+.ssq-hint {
+  font-size: 13.5px;
+  color: #657d96;
+  margin: 0 0 18px;
+}
+
+.ssq-opts {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.ssq-opt {
+  display: flex;
+  align-items: center;
+  gap: 11px;
+  width: 100%;
+  text-align: left;
+  background: #f6f8fb;
+  border: 2px solid #d8e0ec;
+  border-radius: 12px;
+  padding: 14px 16px;
+  font-size: 15.5px;
+  font-weight: 600;
+  color: #1d254b;
+  cursor: pointer;
+  transition: border-color 0.15s, background 0.15s;
+  font-family: inherit;
+}
+
+.ssq-opt:hover {
+  border-color: #e19626;
+}
+
+.ssq-opt.sel {
+  border-color: #0a1c4e;
+  background: #eef2f8;
+}
+
+.ssq-opt.sel::after {
+  content: '✓';
+  margin-left: auto;
+  flex: 0 0 auto;
+  color: #0a1c4e;
+  font-weight: 800;
+}
+
+.ssq-emo {
+  flex: 0 0 auto;
+  width: 1.35em;
+  font-size: 19px;
+  line-height: 1;
+  text-align: center;
+  font-family: 'Apple Color Emoji', 'Segoe UI Emoji', 'Noto Color Emoji', sans-serif;
+}
+
+.ssq-lbl {
+  flex: 1 1 auto;
+  min-width: 0;
+}
+
+/* Botão único — Continue do quiz e CTA do resultado */
+.ssq-continue,
+.ssq-cta {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  box-sizing: border-box;
+  width: 100%;
+  max-width: 540px;
+  margin-left: auto;
+  margin-right: auto;
+  min-height: 0;
+  font-family: 'Poppins', Arial, Helvetica, sans-serif;
+  font-size: 18px;
+  font-weight: 800;
+  line-height: 1.25;
+  letter-spacing: 0.3px;
+  padding: 19px 22px;
+  border: 0;
+  border-radius: 8px;
+  cursor: pointer;
+  background: #479c1a;
+  color: #fff !important;
+  box-shadow: 0 6px 22px rgba(71, 156, 26, 0.35);
+  text-decoration: none;
+  transition: background 0.15s ease, box-shadow 0.15s ease;
+}
+
+.ssq-continue:hover,
+.ssq-cta:hover {
+  background: #3b8215;
+  color: #fff !important;
+  box-shadow: 0 8px 26px rgba(71, 156, 26, 0.35);
+}
+
+.ssq-continue:active,
+.ssq-cta:active {
+  transform: translateY(1px);
+}
+
+.ssq-continue {
+  margin-top: 18px;
+}
+
+.ssq-continue:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+}
+
+.ssq-back {
+  background: none;
+  border: 0;
+  color: #657d96;
+  font-size: 13px;
+  cursor: pointer;
+  margin-top: 14px;
+  padding: 4px;
+  font-family: inherit;
+}
+
+.ssq-back:hover {
+  color: #0a1c4e;
+  text-decoration: underline;
+}
+
+/* loader — "ssq-load", nao "ssq-loader": o bloco de scroll-fix da pagina traz
+   [class*="loader"]{display:none!important}, herdado do template para matar
+   preloader de tema, e ele engoliria a tela de carregamento do quiz. */
+.ssq-load {
+  text-align: center;
+  padding: 36px 6px 30px;
+}
+
+.ssq-spin {
+  width: 74px;
+  height: 74px;
+  border-radius: 50%;
+  border: 8px solid #f0ead8;
+  border-top-color: #e19626;
+  margin: 0 auto 26px;
+  animation: ssqspin 1s linear infinite;
+}
+
+@keyframes ssqspin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.ssq-loadtitle {
+  font-family: 'Bitter', Georgia, serif;
+  font-size: 24px;
+  font-weight: 800;
+  color: #0a1c4e;
+  margin: 0 0 12px;
+}
+
+.ssq-wait {
+  font-size: 12.5px;
+  font-weight: 700;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: #e19626;
+  margin: 0;
+}
+
+/* result */
+.ssq-res {
+  text-align: center;
+}
+
+.ssq-badge {
+  display: inline-block;
+  background: #0a1c4e;
+  color: #fff;
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  border-radius: 99px;
+  padding: 6px 14px;
+  margin: 0 0 10px;
+}
+
+.ssq-restitle {
+  font-family: 'Bitter', Georgia, serif;
+  font-size: 22px;
+  font-weight: 800;
+  line-height: 1.2;
+  color: #0a1c4e;
+  margin: 0 0 12px;
+}
+
+.ssq-restitle b {
+  color: #e19626;
+}
+
+.ssq-est {
+  background: #fff;
+  border: 2px solid #0a1c4e;
+  border-radius: 12px;
+  padding: 12px 14px;
+  margin: 0 0 10px;
+}
+
+.ssq-est h4 {
+  font-size: 11.5px;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #0a1c4e;
+  margin: 0 0 5px;
+}
+
+.ssq-est .big {
+  font-family: 'Bitter', Georgia, serif;
+  font-size: 19px;
+  font-weight: 800;
+  color: #0a1c4e;
+  margin: 0 0 6px;
+}
+
+.ssq-est p {
+  font-size: 12px;
+  line-height: 1.5;
+  color: #33415e;
+  margin: 0;
+}
+
+.ssq-prod {
+  position: relative;
+  display: block;
+  margin: 0 0 8px;
+}
+
+.ssq-prod img {
+  width: 100%;
+  max-width: 440px;
+  height: auto;
+  display: block;
+  margin: 0 auto;
+}
+
+.ssq-scarce {
+  margin: 0 0 10px;
+  text-align: left;
+}
+
+.ssq-scarce .bar {
+  height: 10px;
+  background: #eef2f8;
+  border-radius: 99px;
+  overflow: hidden;
+}
+
+.ssq-scarce .bar i {
+  display: block;
+  height: 100%;
+  width: 82%;
+  background: linear-gradient(90deg, #991b1b, #e19626);
+  border-radius: 99px;
+}
+
+.ssq-scarce span {
+  display: block;
+  font-size: 11.5px;
+  font-weight: 700;
+  color: #991b1b;
+  margin-top: 5px;
+}
+
+.ssq-ship {
+  font-size: 12.5px;
+  color: #1d254b;
+  margin: 0 0 10px;
+}
+
+.ssq-cta {
+  animation: ssqpulse 1.6s ease-in-out infinite;
+}
+
+@keyframes ssqpulse {
+  0%,
+  100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.025);
+  }
+}
+
+.ssq-card.res .ssq-progress {
+  display: none;
+}
+
+.ssq-card.res {
+  padding: 26px 18px 18px;
+}
+
+@media (max-width: 480px) {
+  .ssq-card.res {
+    padding: 16px 12px 12px;
+  }
+  .ssq-card.res .ssq-restitle {
+    font-size: 16.5px;
+    margin: 0 0 6px;
+  }
+  .ssq-card.res .ssq-badge {
+    font-size: 9.5px;
+    padding: 4px 10px;
+    margin: 0 0 6px;
+  }
+  .ssq-card.res .ssq-est {
+    padding: 8px 10px;
+    margin: 0 0 7px;
+  }
+  .ssq-card.res .ssq-est h4 {
+    font-size: 10px;
+    margin: 0 0 3px;
+  }
+  .ssq-card.res .ssq-est .big {
+    font-size: 15px;
+    margin: 0 0 4px;
+  }
+  .ssq-card.res .ssq-est p {
+    font-size: 10.5px;
+    line-height: 1.4;
+  }
+  .ssq-card.res .ssq-prod {
+    margin: 0 0 5px;
+  }
+  .ssq-card.res .ssq-prod img {
+    max-width: 300px;
+  }
+  .ssq-card.res .ssq-scarce {
+    margin: 0 0 7px;
+  }
+  .ssq-card.res .ssq-scarce .bar {
+    height: 8px;
+  }
+  .ssq-card.res .ssq-scarce span {
+    font-size: 10.5px;
+    margin-top: 4px;
+  }
+  .ssq-card.res .ssq-ship {
+    margin: 0 0 7px;
+    font-size: 11.5px;
+  }
+  .ssq-card.res .ssq-cta {
+    padding: 14px 14px;
+    font-size: 15px;
+    border-radius: 8px;
+  }
+}
+
+@media (max-width: 480px) {
+  .ssq-inline {
+    padding: 6px 8px 16px;
+  }
+  .ssq-card {
+    padding: 24px 14px 18px;
+    margin: 0 auto;
+  }
+  .ssq-q {
+    font-size: 20px;
+  }
+  .ssq-restitle {
+    font-size: 20px;
+  }
+  .ssq-prod img {
+    max-width: 360px;
+  }
+}
+
+/* ==== QUIZ COMPACTO — cabe em uma tela ==== */
+@media (max-width: 768px), (max-height: 860px) {
+  .ssq-inline {
+    padding: 6px 8px 14px;
+  }
+  .ssq-card {
+    margin: 0 auto;
+    padding: 16px 14px 14px;
+    border-radius: 14px;
+    max-width: 520px;
+  }
+  .ssq-progress {
+    height: 6px;
+    margin: 0 0 12px;
+  }
+  .ssq-kicker {
+    font-size: 11px;
+    letter-spacing: 0.12em;
+    margin: 0 0 5px;
+  }
+  .ssq-q {
+    font-size: 18px;
+    line-height: 1.22;
+    margin: 0 0 4px;
+  }
+  .ssq-hint {
+    font-size: 12px;
+    margin: 0 0 9px;
+  }
+  .ssq-opts {
+    gap: 6px;
+  }
+  .ssq-opt {
+    padding: 8px 12px;
+    font-size: 14px;
+    line-height: 1.3;
+    border-radius: 9px;
+    gap: 9px;
+  }
+  .ssq-emo {
+    font-size: 17px;
+  }
+  .ssq-back {
+    font-size: 12px;
+    margin-top: 8px;
+    padding: 2px;
+  }
+  .ssq-load {
+    padding: 26px 6px 22px;
+  }
+  .ssq-spin {
+    width: 58px;
+    height: 58px;
+    border-width: 6px;
+    margin: 0 auto 18px;
+  }
+  .ssq-loadtitle {
+    font-size: 20px;
+    margin: 0 0 8px;
+  }
+  .ssq-badge {
+    font-size: 10px;
+    padding: 5px 12px;
+    margin: 0 0 8px;
+  }
+  .ssq-restitle {
+    font-size: 19px;
+    margin: 0 0 8px;
+  }
+  .ssq-est {
+    padding: 10px 12px;
+    margin: 0 0 8px;
+  }
+  .ssq-est .big {
+    font-size: 17px;
+    margin: 0 0 4px;
+  }
+  .ssq-est p {
+    font-size: 11.5px;
+    line-height: 1.45;
+  }
+  .ssq-prod {
+    margin: 0 0 6px;
+  }
+  .ssq-prod img,
+  .ssq-card.res .ssq-prod img {
+    max-width: 100%;
+  }
+  .ssq-scarce {
+    margin: 0 0 8px;
+  }
+  .ssq-scarce .bar {
+    height: 8px;
+  }
+  .ssq-scarce span {
+    font-size: 11px;
+    margin-top: 4px;
+  }
+  .ssq-ship {
+    font-size: 12px;
+    margin: 0 0 8px;
+  }
+  .ssq-continue {
+    margin-top: 12px;
+  }
+}
+
+@media (max-height: 700px) {
+  .ssq-card {
+    padding: 12px 12px 12px;
+  }
+  .ssq-progress {
+    margin: 0 0 9px;
+  }
+  .ssq-q {
+    font-size: 17px;
+    margin: 0 0 3px;
+  }
+  .ssq-hint {
+    font-size: 11.5px;
+    margin: 0 0 7px;
+  }
+  .ssq-opts {
+    gap: 5px;
+  }
+  .ssq-opt {
+    padding: 7px 11px;
+    font-size: 13.5px;
+  }
+  .ssq-emo {
+    font-size: 16px;
+  }
+  .ssq-continue,
+  .ssq-cta {
+    font-size: 15px;
+    padding: 13px 16px;
+  }
+  .ssq-continue {
+    margin-top: 8px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ssq-cta {
+    animation: none;
+  }
+}
