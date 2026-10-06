@@ -1,0 +1,63 @@
+@keyframes hv-pulse {
+    0%,
+    100% {
+        box-shadow: 0 0 0 0 rgba(251, 191, 36, .7)
+    }
+    70% {
+        box-shadow: 0 0 0 16px rgba(251, 191, 36, 0)
+    }
+}
+
+.btn-pulse .elementor-button {
+    animation: hv-pulse 2s ease-in-out infinite
+}
+
+.esconder {
+    display: none
+}
+
+.cronometro {
+    font-size: 50px;
+    font-weight: bold;
+    text-align: center;
+    color: #fff
+}
+
+/* dentro do editor do Elementor o bloco fica visivel (no site publicado continua oculto ate o gate) */
+
+body.elementor-editor-active .esconder,
+body.elementor-editor-preview .esconder {
+    display: flex !important
+}
+
+#below-vsl>.e-con {
+    width: 100%;
+    max-width: 100%
+}
+
+.hv-price-card .elementor-button {
+    width: 100%
+}
+
+.elementor-widget-text-editor p {
+    margin: 0
+}
+
+.elementor-widget-heading .elementor-heading-title {
+    margin: 0
+}
+
+.esconder {
+    display: none
+}
+
+.cronometro {
+    font-size: 50px;
+    font-weight: bold;
+    text-align: center;
+    color: #fff;
+}
+
+.cbtb {
+    display: none !important
+}

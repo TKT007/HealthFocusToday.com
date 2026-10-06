@@ -1,0 +1,181 @@
+/* dtc-cta — transplantado de useslimsoda/assets/pages/dtc/pv/ml02/css/style.css.
+   Substitui os blocos .esconder (kits, garantia e selos) das cc/pv/mlNN: depois
+   do pitch a página mostra só este CTA. Tudo escopado em .dtc-cta. */
+
+/* No pitch o script põe .dtc-revealed no body: some o aviso "last chance", o
+   widget vazio 598b268 (que custava mais um gap de 24px) e o padding de 40px
+   do fim da section do vídeo, para o botão ficar a exatos 24px do vídeo. */
+
+body.dtc-revealed .elementor-element-e4389fb,
+body.dtc-revealed .elementor-element-598b268 {
+    display: none;
+}
+
+body.dtc-revealed .elementor-element.elementor-element-9baa9da {
+    --padding-bottom: 0px;
+}
+
+/* preto para continuar o hero, que acima também é #000 */
+
+.dtc-cta-wrap {
+    padding-top: 24px;
+    background: #000;
+}
+
+.dtc-cta {
+    padding: 0 16px 34px;
+    background: #000;
+    text-align: center;
+}
+
+.dtc-cta__stock {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 9px;
+    /* the scarcity line now sits under the button, so the gap moves to the top */
+    margin: 16px 0 0;
+    /* This page is white, unlike the black reference the brief screenshots: a
+     pale red on white is barely there, and the count would have been white on
+     white. Both take the light-page treatment. */
+    color: #d92626;
+    font-size: clamp(20px, 5.2vw, 26px);
+    font-weight: 700;
+    letter-spacing: 0.01em;
+}
+
+/* inline-block so the drop animation can transform it, and a fixed min-width so
+   250 → 99 does not shift the line as it counts down */
+
+.dtc-cta__stock strong {
+    display: inline-block;
+    min-width: 2.1em;
+    color: #fbbf24;
+    font-size: 1.15em;
+    font-weight: 800;
+    font-variant-numeric: tabular-nums;
+    text-align: center;
+}
+
+.dtc-cta__stock strong.is-dropping {
+    animation: spotDrop 0.34s ease-out;
+}
+
+.dtc-cta__dot {
+    flex: none;
+    width: 11px;
+    height: 11px;
+    border-radius: 50%;
+    background: #ef2626;
+    box-shadow: 0 0 0 0 rgba(239, 38, 38, 0.7);
+    animation: spotDot 1.6s ease-out infinite;
+}
+
+.dtc-cta__button {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    max-width: 620px;
+    min-height: 86px;
+    margin: 0 auto;
+    padding: 16px 20px;
+    overflow: hidden;
+    border-radius: 14px;
+    background: linear-gradient(180deg, #35d46f, #159c48);
+    color: #fff !important;
+    font-size: clamp(21px, 5.4vw, 32px);
+    font-weight: 900;
+    line-height: 1.12;
+    text-align: center;
+    text-decoration: none;
+    text-wrap: balance;
+    text-shadow: 0 2px 6px rgba(6, 68, 30, 0.35);
+    /* the shared stylesheet paints every <a> dark */
+    animation: ctaPulse 1.5s ease-in-out infinite;
+}
+
+.dtc-cta__button:hover,
+.dtc-cta__button:focus-visible {
+    background: linear-gradient(180deg, #3ee07a, #17ac4f);
+    color: #fff !important;
+}
+
+/* the sheen is a child so it sweeps the label without inheriting the pulse */
+
+.dtc-cta__button::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: -60%;
+    width: 42%;
+    height: 100%;
+    background: linear-gradient(100deg, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 0.5) 50%, rgba(255, 255, 255, 0) 100%);
+    transform: skewX(-18deg);
+    animation: ctaSheen 3s ease-in-out infinite;
+}
+
+@keyframes ctaPulse {
+    0%,
+    100% {
+        transform: scale(1);
+        box-shadow: 0 10px 22px rgba(21, 156, 72, 0.3);
+    }
+    50% {
+        transform: scale(1.035);
+        box-shadow: 0 18px 38px rgba(53, 212, 111, 0.55);
+    }
+}
+
+@keyframes ctaSheen {
+    0% {
+        left: -60%;
+    }
+    55%,
+    100% {
+        left: 125%;
+    }
+}
+
+@keyframes spotDot {
+    0% {
+        box-shadow: 0 0 0 0 rgba(239, 38, 38, 0.7);
+    }
+    70% {
+        box-shadow: 0 0 0 10px rgba(239, 38, 38, 0);
+    }
+    100% {
+        box-shadow: 0 0 0 0 rgba(239, 38, 38, 0);
+    }
+}
+
+/* a spot going is a small dip and a red tint, not a celebration */
+
+@keyframes spotDrop {
+    0% {
+        transform: translateY(-3px);
+        color: #d92626;
+    }
+    55% {
+        transform: translateY(0);
+    }
+    100% {
+        transform: translateY(0);
+        color: #fbbf24;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .dtc-cta__button,
+    .dtc-cta__dot,
+    .dtc-cta__stock strong.is-dropping {
+        animation: none;
+    }
+    .dtc-cta__button {
+        box-shadow: 0 12px 24px rgba(21, 156, 72, 0.35);
+    }
+    .dtc-cta__button::after {
+        display: none;
+    }
+}
