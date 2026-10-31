@@ -1,0 +1,352 @@
+/* MemoFlow / HW / VSL — CBS News skin over the H&W VSL kit
+   (assets/main/css/vsl-kit.css, loaded first). The kit runs the stage, the
+   pinned player, the comments and the CTA; this file is only the look. */
+
+:root {
+  /* No webfont is loaded. Asking for a family by name that the device may
+     only carry in italics renders the page slanted; this stack is upright
+     everywhere: Helvetica Neue on Apple, Arial on Windows, Roboto on Android
+     through the generic. */
+  --font-display: "Helvetica Neue", Arial, sans-serif;
+  --font-body: "Helvetica Neue", Arial, sans-serif;
+  --font-fb: Helvetica, Arial, sans-serif;
+
+  /* 9:16 video. The stage keeps 160px of screen for the comments scrolling
+     under the pinned player. A 9:16 frame only grows where the screen is
+     tall enough (about 850px of usable height for a 390px-wide phone);
+     elsewhere it keeps its size and just pins. */
+  --vsl-player-ratio: 0.5625;
+  --vsl-stage-reserve: 160px;
+  /* at the pitch: headline, button and stock line on the same screen */
+  --vsl-pitch-reserve: 250px;
+
+  --vsl-top-h: 48px;
+  --vsl-headline-m: 21px;
+
+  --ink: #111;
+  --muted: #666;
+}
+
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background: #fff;
+  color: var(--ink);
+  font-family: var(--font-body);
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+}
+
+img {
+  display: block;
+  max-width: 100%;
+}
+
+.wrap {
+  width: 100%;
+  max-width: var(--vsl-maxw);
+  margin: 0 auto;
+  padding: 0 16px;
+}
+
+/* ---- CBS top bar -------------------------------------------------------- */
+
+.cbs-top {
+  border-bottom: 1px solid #1a1a1a;
+  background: #fff;
+}
+
+.cbs-top__in {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: var(--vsl-top-h);
+  padding: 0 16px;
+}
+
+/* 3×3 dot grid drawn with one element's shadow */
+.cbs-top__grid {
+  width: 3.5px;
+  height: 3.5px;
+  margin: 0 5px;
+  background: #000;
+  box-shadow:
+    0 -5px #000,
+    0 5px #000,
+    -5px 0 #000,
+    -5px -5px #000,
+    -5px 5px #000,
+    5px 0 #000,
+    5px -5px #000,
+    5px 5px #000;
+}
+
+.cbs-top__menu {
+  display: none;
+}
+
+.cbs-top__logo {
+  width: 150px;
+  height: auto;
+}
+
+.cbs-top__search svg {
+  display: block;
+  width: 18px;
+  height: 18px;
+  fill: none;
+  stroke: #000;
+  stroke-width: 2.5;
+}
+
+@media (min-width: 768px) {
+  :root {
+    --vsl-top-h: 52px;
+  }
+
+  .cbs-top {
+    border-bottom-color: #5e6264;
+  }
+
+  .cbs-top__in {
+    max-width: 1320px;
+    margin: 0 auto;
+  }
+
+  .cbs-top__grid {
+    display: none;
+  }
+
+  .cbs-top__menu {
+    display: flex;
+    gap: 24px;
+    font-size: 14px;
+    font-weight: 700;
+  }
+
+  .cbs-top__menu span {
+    display: flex;
+    align-items: center;
+  }
+
+  .cbs-top__menu svg {
+    width: 9px;
+    height: 9px;
+    margin-left: 8px;
+    fill: none;
+    stroke: currentColor;
+    stroke-width: 3;
+  }
+
+  .cbs-top__logo {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+}
+
+.cbs-live-dot {
+  display: inline-block;
+  width: 6px;
+  height: 6px;
+  margin-right: 6px;
+  border-radius: 999px;
+  background: #ff2d2d;
+}
+
+/* ---- Headline ----------------------------------------------------------- */
+
+.headline {
+  padding: 14px 0 10px;
+}
+
+.headline h1 {
+  color: var(--ink);
+  font-family: var(--font-display);
+  font-weight: 700;
+  line-height: 1.25;
+  text-wrap: balance;
+  overflow-wrap: break-word;
+}
+
+.headline__date {
+  margin-top: 6px;
+  color: var(--muted);
+  font-size: 12px;
+  line-height: 1.4;
+  white-space: nowrap;
+}
+
+@media (min-width: 768px) {
+  .headline {
+    padding: 40px 0 24px;
+  }
+
+  .headline__date {
+    font-size: 13.5px;
+  }
+}
+
+/* ---- Player ------------------------------------------------------------- */
+
+.vsl-video {
+  padding: 4px 0 10px;
+}
+
+/* ---- Comments (Facebook look) ------------------------------------------- */
+
+/* The metrics here are copied from the real Facebook comment UI on purpose;
+   they don't follow this page's spacing rhythm. */
+.comments {
+  padding-bottom: 32px;
+}
+
+.fb {
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  background: #fff;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+  font-family: var(--font-fb);
+}
+
+.fb__count {
+  padding: 16px;
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.fb__row {
+  display: flex;
+  gap: 10px;
+  padding: 10px 16px;
+}
+
+.fb__row--reply {
+  margin-left: 40px;
+}
+
+.fb__avatar {
+  flex-shrink: 0;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.fb__col {
+  flex: 1;
+  min-width: 0;
+}
+
+.fb__bubble {
+  padding: 10px 14px;
+  border-radius: 18px;
+  background: #f0f2f5;
+}
+
+.fb__name {
+  color: #385898;
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.fb__text {
+  margin-top: 4px;
+  color: #050505;
+  font-size: 15px;
+}
+
+.fb__meta {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin-top: 4px;
+  color: #65676b;
+  font-size: 12px;
+}
+
+.fb__meta b {
+  font-weight: 600;
+}
+
+.fb__dot {
+  color: #bcc0c4;
+}
+
+.fb__reactions {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin-left: auto;
+  margin-right: 38px;
+  font-weight: 600;
+}
+
+.fb__reactions svg {
+  width: 18px;
+  height: 18px;
+  padding: 4px;
+  border-radius: 50%;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.15);
+}
+
+.fb__icons {
+  display: flex;
+}
+
+.fb__like {
+  background: #1877f2;
+  fill: #fff;
+}
+
+.fb__love {
+  background: linear-gradient(135deg, #ff4d4d, #ff0066);
+  fill: #fff;
+}
+
+@media (min-width: 768px) {
+  .fb__row--reply {
+    margin-left: 50px;
+  }
+}
+
+/* ---- Footer ------------------------------------------------------------- */
+
+.foot {
+  padding: 48px 0;
+  background: #3d3d3d;
+  color: #fff;
+  text-align: center;
+}
+
+.foot__links {
+  margin-bottom: 24px;
+  list-style: none;
+  font-size: 14px;
+}
+
+.foot__links li {
+  display: inline-block;
+  margin: 0 4px;
+}
+
+.foot__links a {
+  color: #fff;
+  font-weight: 500;
+  text-decoration: none;
+}
+
+.foot__links a:hover {
+  text-decoration: underline;
+}
+
+.foot__mark {
+  font-size: 13px;
+}
