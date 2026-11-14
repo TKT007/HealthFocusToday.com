@@ -1,0 +1,260 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="robots" content="noindex, nofollow" />
+    <title>Question — The Natural Botox That Makes Women Look up to 30 Years Younger</title>
+    <meta name="description" content="Lumivelle — daily skin nutrition." />
+    <meta name="referrer" content="strict-origin-when-cross-origin" />
+    <meta name="theme-color" content="#ffffff" />
+
+    <!-- Same fonts as the VSL page (ld03/index.html) so the funnel reads as
+         one property. Everything else is inline: this page has to load in
+         one shot on mobile. -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@700;900&amp;family=Inter:wght@700&amp;display=swap"
+      rel="stylesheet"
+    />
+
+    <style>
+      /* Preland for ld03. Skinned with the land's own palette
+         (--plum #935094, --cocoa #543c3c, green CTA #0f8340 → #0e7c3a,
+         pulse + sheen straight from vsl-kit.css). */
+      :root {
+        --plum: #935094;
+        --cocoa: #543c3c;
+        --rose: #c47a8a;
+        --paper: #fff;
+        --green-top: #0f8340;
+        --green-bottom: #0e7c3a;
+        --green-hover-top: #0c7536;
+        --green-hover-bottom: #0a6a31;
+        --ease: cubic-bezier(0.22, 0.61, 0.36, 1);
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      html,
+      body {
+        margin: 0;
+        padding: 0;
+      }
+
+      body {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        min-height: 100vh;
+        min-height: 100dvh;
+        padding: 24px 18px;
+        background: var(--paper);
+        color: var(--cocoa);
+        font-family: Inter, "Helvetica Neue", Arial, sans-serif;
+      }
+
+      .card {
+        width: 100%;
+        max-width: 480px;
+        text-align: center;
+      }
+
+      .eyebrow {
+        margin: 0 0 18px;
+        color: var(--rose);
+        font-size: 13px;
+        font-weight: 700;
+        letter-spacing: 0.14em;
+        text-transform: uppercase;
+      }
+
+      h1 {
+        margin: 0 0 16px;
+        color: var(--cocoa);
+        font-family: "Inter Tight", Inter, "Helvetica Neue", Arial, sans-serif;
+        font-size: clamp(24px, 6.4vw, 34px);
+        font-weight: 900;
+        line-height: 1.18;
+      }
+
+      h1 em {
+        color: var(--plum);
+        font-style: normal;
+      }
+
+      .sub {
+        margin: 0 auto 30px;
+        max-width: 42ch;
+        color: var(--cocoa);
+        font-size: clamp(15px, 4.2vw, 17px);
+        font-weight: 700;
+        line-height: 1.5;
+        opacity: 0.85;
+      }
+
+      /* Yes: the land's CTA button, verbatim mechanics (pulse + sheen). */
+      .btn-yes {
+        position: relative;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 100%;
+        min-height: 62px;
+        margin: 0 auto;
+        padding: 12px 18px;
+        overflow: hidden;
+        border-radius: 12px;
+        background: linear-gradient(180deg, var(--green-top), var(--green-bottom));
+        color: #fff;
+        font-family: "Inter Tight", Inter, "Helvetica Neue", Arial, sans-serif;
+        font-size: clamp(17px, 4.6vw, 21px);
+        font-weight: 700;
+        line-height: 1.15;
+        text-decoration: none;
+        text-shadow: 0 2px 6px rgba(6, 68, 30, 0.35);
+        touch-action: manipulation;
+        animation: plPulse 1.5s ease-in-out infinite;
+      }
+
+      .btn-yes span {
+        white-space: nowrap;
+      }
+
+      .btn-yes:active {
+        filter: brightness(0.92);
+      }
+
+      .btn-yes:hover,
+      .btn-yes:focus-visible {
+        background: linear-gradient(180deg, var(--green-hover-top), var(--green-hover-bottom));
+        color: #fff;
+      }
+
+      .btn-yes::after {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: -60%;
+        width: 42%;
+        height: 100%;
+        background: linear-gradient(
+          100deg,
+          rgba(255, 255, 255, 0) 0%,
+          rgba(255, 255, 255, 0.5) 50%,
+          rgba(255, 255, 255, 0) 100%
+        );
+        transform: translateX(0) skewX(-18deg);
+        animation: plSheen 3s ease-in-out infinite;
+      }
+
+      /* No: deliberately weaker — present and clickable, but not enticing. */
+      .btn-no {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 100%;
+        min-height: 46px;
+        margin-top: 12px;
+        padding: 8px 14px;
+        border: 2px solid #e4d7d7;
+        border-radius: 12px;
+        color: #9b8484;
+        background: transparent;
+        font-family: Inter, "Helvetica Neue", Arial, sans-serif;
+        font-size: clamp(13px, 3.6vw, 15px);
+        font-weight: 700;
+        line-height: 1.2;
+        text-decoration: none;
+        touch-action: manipulation;
+      }
+
+      .btn-no:active,
+      .btn-no:hover,
+      .btn-no:focus-visible {
+        border-color: #d3bfbf;
+        color: #7d6464;
+      }
+
+      .btn-yes:focus-visible,
+      .btn-no:focus-visible {
+        outline: 3px solid var(--plum);
+        outline-offset: 2px;
+      }
+
+      .note {
+        margin: 22px 0 0;
+        color: #9b8484;
+        font-size: 12px;
+        font-weight: 700;
+        letter-spacing: 0.02em;
+      }
+
+      @keyframes plPulse {
+        0%,
+        100% {
+          transform: scale(1);
+          box-shadow: 0 10px 22px rgba(21, 156, 72, 0.3);
+        }
+        50% {
+          transform: scale(1.035);
+          box-shadow: 0 18px 38px rgba(53, 212, 111, 0.55);
+        }
+      }
+
+      @keyframes plSheen {
+        0% {
+          transform: translateX(0) skewX(-18deg);
+        }
+        55%,
+        100% {
+          transform: translateX(440%) skewX(-18deg);
+        }
+      }
+
+      @media (prefers-reduced-motion: reduce) {
+        .btn-yes,
+        .btn-yes::after {
+          animation: none;
+        }
+      }
+    </style>
+  </head>
+
+  <body>
+    <main class="card">
+      <p class="eyebrow">For women over 40 in the U.S.</p>
+      <h1>
+        Do you want to discover why thousands of American women are ditching Botox for this simple
+        <em>&ldquo;morning ritual&rdquo;</em>?
+      </h1>
+      <p class="sub">
+        One of America&rsquo;s leading surgeons reveals how it helps women over 40 look up to 30 years
+        younger &mdash; watch the free presentation before it&rsquo;s taken down.
+      </p>
+
+      <!-- Both answers go to the VSL (ld03). The script below carries every
+           URL param over so affiliate-trackcontrol on the land can copy them
+           onto the checkout link. -->
+      <a class="btn-yes" href="index.html" data-go><span>✔&ensp;YES, I WANT TO LOOK YOUNGER</span></a>
+      <a class="btn-no" href="index.html" data-go>✖&ensp;No, I&rsquo;m fine with looking my age</a>
+
+      <p class="note">Free presentation &middot; Takes less than 1 minute to start</p>
+    </main>
+
+    <script>
+      (function () {
+        var q = window.location.search;
+        if (!q) return;
+        var links = document.querySelectorAll("a[data-go]");
+        for (var i = 0; i < links.length; i++) {
+          var href = links[i].getAttribute("href") || "";
+          links[i].setAttribute("href", href + (href.indexOf("?") > -1 ? "&" : "?") + q.slice(1));
+        }
+      })();
+    </script>
+  </body>
+</html>
