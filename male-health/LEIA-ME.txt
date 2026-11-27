@@ -1,0 +1,67 @@
+EREVANTON — PÁGINA 2
+====================
+
+2 arquivos. Jogue os dois na MESMA pasta do seu servidor e acabou.
+Não tem pasta de css, js, imagem ou fonte para subir.
+
+    presell.html   → a página de entrada (age gate 21+)
+    index.html     → a página da VSL
+
+Mande o tráfego do anúncio para:  seudominio.com/suapasta/presell.html
+
+
+SÓ ISSO PRECISA SER EDITADO
+---------------------------
+
+1) presell.html — linha 21
+   Para onde o botão "Yes" leva:
+
+       VSL_URL: "index.html"
+
+   Os dois arquivos na mesma pasta? NÃO MEXA, já funciona.
+   VSL em outro lugar? Cole a URL completa dela.
+
+2) index.html — linha 23
+   Seu link de checkout (o botão verde da VSL):
+
+       CTA_URL: "https://order.wealthpay.io/sca1ml7aemkd",
+
+Pronto. Nada mais precisa ser alterado para a página rodar.
+
+
+SE VOCÊ TROCAR A VSL
+--------------------
+Aí tem mais 2 coisas no index.html:
+
+   PITCH_SECONDS: 2124     → segundo do vídeo em que o botão aparece
+                             (minutos x 60 + segundos; 35:24 = 2124)
+
+   O embed: procure por "TROCAR O EMBED DA VSL", apague até o
+   "FIM DO EMBED" e cole o código do seu player.
+
+Funciona com qualquer player:
+ - Player VTurb: o botão segue o tempo do VÍDEO (quem pausa não ganha
+   o botão adiantado).
+ - Qualquer outro player: a página percebe e usa o tempo de permanência
+   na página, no mesmo segundo configurado.
+Para desligar essa segunda opção, mude FALLBACK_TIMER para false.
+
+
+O QUE JÁ VEM PRONTO
+-------------------
+- As UTMs/parâmetros do anúncio passam da presell para a VSL e de lá
+  para o checkout. Seu tracking não se perde no caminho.
+- Scripts de tracking da HW Publishing mantidos (cdn.nlabs.cloud).
+- O botão do checkout abre em nova aba.
+- noindex/nofollow nas duas páginas.
+
+
+COMO CONFERIR ANTES DE SUBIR
+----------------------------
+    cd pasta-dos-arquivos
+    python3 -m http.server 8000
+    → abra http://localhost:8000/presell.html
+
+Para ver o botão da VSL sem assistir o vídeo todo, troque
+PITCH_SECONDS para 5, dê play, espere 5 segundos. Depois volte
+para 2124.
